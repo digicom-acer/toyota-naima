@@ -239,24 +239,29 @@
 
   <!-- Main Content -->
   <div class="container" id="mainContent" style="display: none;">
-    <h1>Welcome!</h1>
-    <p><a href="https://www.facebook.com/Toyota.Nepal" target="_blank">📘 Facebook</a></p>
-    <p><a href="https://www.instagram.com/toyota.nepal/" target="_blank">📸 Instagram</a></p>
-    <p><a href="https://x.com/Toyota_Nepal" target="_blank">🐦 X</a></p>
-    <p><a href="https://api.whatsapp.com/send/?phone=%2B9779851249441&text&type=phone_number&app_absent=0" target="_blank">💬 Whatsapp</a></p>
-    <p><a href="https://www.toyota.com.np/" target="_blank">🌐 Website</a></p>
-    <p><a href="https://www.toyota.com.np/en/contact-us/find-a-dealer.html" target="_blank">📍 Our Locations</a></p>
-    <p><a href="tel:+9779851249441">📞 Call Us</a></p>
-    <p><a href="#" onclick="goToBrochurePage()">📄 Download Brochure</a></p>
-  </div>
 
-  <!-- Brochure Page -->
-  <div class="container" id="brochurePage" style="display: none;">
-    <h1>Select a Brochure</h1>
-    <p><a href="https://example.com/brochure1.pdf" download>🚗 Prado 250 Series</a></p>
-    <p><a href="https://example.com/brochure2.pdf" download>🚙 Hilux 2025 Edition</a></p>
-    <p><a href="https://example.com/brochure3.pdf" download>🚐 Land Cruiser 300</a></p>
-    <p><button onclick="goBackToMain()" style="padding: 10px 20px; background-color: #007bff; border: none; border-radius: 10px; color: white; font-weight: bold; cursor: pointer;">⬅ Back</button></p>
+    <!-- Main Links -->
+    <div id="mainLinks">
+      <h1>Welcome!</h1>
+      <p><a href="https://www.facebook.com/Toyota.Nepal" target="_blank">📘 Facebook</a></p>
+      <p><a href="https://www.instagram.com/toyota.nepal/" target="_blank">📸 Instagram</a></p>
+      <p><a href="https://x.com/Toyota_Nepal" target="_blank">🐦 X</a></p>
+      <p><a href="https://api.whatsapp.com/send/?phone=%2B9779851249441&text&type=phone_number&app_absent=0" target="_blank">💬 Whatsapp</a></p>
+      <p><a href="https://www.toyota.com.np/" target="_blank">🌐 Website</a></p>
+      <p><a href="https://www.toyota.com.np/en/contact-us/find-a-dealer.html" target="_blank">📍 Our Locations</a></p>
+      <p><a href="tel:+9779851249441">📞 Call Us</a></p>
+      <p><a href="#" onclick="showBrochures()">📄 Download Brochure</a></p>
+    </div>
+
+    <!-- Brochure List -->
+    <div id="brochureSection" style="display: none;">
+      <h1>Select a Brochure</h1>
+      <p><a href="https://example.com/brochure1.pdf" download>🚗 Prado 250 Series</a></p>
+      <p><a href="https://example.com/brochure2.pdf" download>🚙 Hilux 2025 Edition</a></p>
+      <p><a href="https://example.com/brochure3.pdf" download>🚐 Land Cruiser 300</a></p>
+      <p><button onclick="goBackToMainLinks()" style="padding: 10px 20px; background-color: #007bff; border: none; border-radius: 10px; color: white; font-weight: bold; cursor: pointer;">⬅ Back</button></p>
+    </div>
+
   </div>
 
   <script>
@@ -264,7 +269,6 @@
       document.getElementById('dialog').style.display = 'block';
       document.getElementById('formBox').style.display = 'none';
       document.getElementById('mainContent').style.display = 'none';
-      document.getElementById('brochurePage').style.display = 'none';
 
       window.showForm = function () {
         document.getElementById('dialog').style.display = 'none';
@@ -314,14 +318,15 @@
         });
       });
 
-      window.goToBrochurePage = function () {
-        document.getElementById('mainContent').style.display = 'none';
-        document.getElementById('brochurePage').style.display = 'block';
+      // Brochure toggle logic
+      window.showBrochures = function () {
+        document.getElementById('mainLinks').style.display = 'none';
+        document.getElementById('brochureSection').style.display = 'block';
       };
 
-      window.goBackToMain = function () {
-        document.getElementById('brochurePage').style.display = 'none';
-        document.getElementById('mainContent').style.display = 'block';
+      window.goBackToMainLinks = function () {
+        document.getElementById('brochureSection').style.display = 'none';
+        document.getElementById('mainLinks').style.display = 'block';
       };
     };
   </script>
