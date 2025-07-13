@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       height: 100vh;
-      background-image: url('https://digicom-acer.github.io/toyota-naima/background.jpg');
+      background-image: url('https://digicom-acer.github.io/naima-ather-landing-page/background.jpg');
       background-size: cover;
       background-position: center;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -53,11 +53,10 @@
       width: 100%;
     }
 
-    .dialog-box h2 {
-      margin-bottom: 0.8rem;
+    .dialog-box h2, .form-box h2, .container h1 {
+      margin-bottom: 1rem;
       color: #111;
       font-weight: 700;
-      font-size: 1.5rem;
     }
 
     .dialog-box p {
@@ -98,13 +97,6 @@
 
     .no:hover {
       background: #a71d2a;
-    }
-
-    .form-box h2 {
-      margin-bottom: 1.2rem;
-      color: #111;
-      font-weight: 700;
-      font-size: 1.6rem;
     }
 
     input {
@@ -163,13 +155,6 @@
       box-shadow: 0 7px 18px rgba(0, 86, 179, 0.5);
     }
 
-    .container h1 {
-      margin-bottom: 18px;
-      color: #000;
-      font-weight: 700;
-      font-size: 1.8rem;
-    }
-
     .container p {
       margin: 10px 0;
     }
@@ -221,6 +206,7 @@
   </style>
 </head>
 <body>
+
   <!-- Consent Dialog -->
   <div class="dialog-box" id="dialog" style="display: none;">
     <h2>Share Your Contact Details?</h2>
@@ -261,20 +247,16 @@
     <p><a href="https://www.toyota.com.np/" target="_blank">🌐 Website</a></p>
     <p><a href="https://www.toyota.com.np/en/contact-us/find-a-dealer.html" target="_blank">📍 Our Locations</a></p>
     <p><a href="tel:+9779851249441">📞 Call Us</a></p>
-    <p><a href="#" onclick="openBrochureModal()">📄 Download Brochure</a></p>
+    <p><a href="#" onclick="goToBrochurePage()">📄 Download Brochure</a></p>
   </div>
 
-  <!-- Brochure Modal -->
-  <div id="brochureModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.5); justify-content:center; align-items:center; z-index:1000;">
-    <div style="background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 30px; border-radius: 18px; max-width: 500px; width: 90%; text-align: center; box-shadow: 0 14px 24px rgba(0,0,0,0.12); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-      <h2 style="margin-top: 0; color: #111; font-weight: 700; font-size: 1.5rem;">Choose a Brochure</h2>
-      <ul style="list-style: none; padding: 0; margin: 20px 0;">
-        <li style="margin-bottom: 12px;"><a href="https://example.com/brochure1.pdf" download style="color: #007bff; font-size: 1.05rem; text-decoration: none;">🚗 Prado 250 Series</a></li>
-        <li style="margin-bottom: 12px;"><a href="https://example.com/brochure2.pdf" download style="color: #007bff; font-size: 1.05rem; text-decoration: none;">🚙 Hilux 2025 Edition</a></li>
-        <li style="margin-bottom: 12px;"><a href="https://example.com/brochure3.pdf" download style="color: #007bff; font-size: 1.05rem; text-decoration: none;">🚐 Land Cruiser 300</a></li>
-      </ul>
-      <button onclick="closeBrochureModal()" style="padding: 10px 20px; background: #dc3545; color: #fff; border: none; border-radius: 10px; cursor: pointer; font-size: 1rem; transition: background-color 0.3s ease;">Close</button>
-    </div>
+  <!-- Brochure Page -->
+  <div class="container" id="brochurePage" style="display: none;">
+    <h1>Select a Brochure</h1>
+    <p><a href="https://example.com/brochure1.pdf" download>🚗 Prado 250 Series</a></p>
+    <p><a href="https://example.com/brochure2.pdf" download>🚙 Hilux 2025 Edition</a></p>
+    <p><a href="https://example.com/brochure3.pdf" download>🚐 Land Cruiser 300</a></p>
+    <p><button onclick="goBackToMain()" style="padding: 10px 20px; background-color: #007bff; border: none; border-radius: 10px; color: white; font-weight: bold; cursor: pointer;">⬅ Back</button></p>
   </div>
 
   <script>
@@ -282,6 +264,7 @@
       document.getElementById('dialog').style.display = 'block';
       document.getElementById('formBox').style.display = 'none';
       document.getElementById('mainContent').style.display = 'none';
+      document.getElementById('brochurePage').style.display = 'none';
 
       window.showForm = function () {
         document.getElementById('dialog').style.display = 'none';
@@ -315,11 +298,10 @@
         }
 
         fetch('https://script.google.com/macros/s/AKfycbwh83jggU_mOvEyzQF6kx4PexRYH0NC-JOZYvmtCwdAg-w2vx8Fsc5W9wQmK-G7pwTs/exec', {
-  method: 'POST',
-  mode: 'no-cors',
-  body: new FormData(form)
-})
-
+          method: 'POST',
+          mode: 'no-cors',
+          body: new FormData(form)
+        })
         .then(() => {
           form.reset();
           document.getElementById('formBox').style.display = 'none';
@@ -332,13 +314,14 @@
         });
       });
 
-      // Brochure modal functions
-      window.openBrochureModal = function () {
-        document.getElementById('brochureModal').style.display = 'flex';
+      window.goToBrochurePage = function () {
+        document.getElementById('mainContent').style.display = 'none';
+        document.getElementById('brochurePage').style.display = 'block';
       };
 
-      window.closeBrochureModal = function () {
-        document.getElementById('brochureModal').style.display = 'none';
+      window.goBackToMain = function () {
+        document.getElementById('brochurePage').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
       };
     };
   </script>
