@@ -315,10 +315,11 @@
         }
 
         fetch('https://script.google.com/macros/s/AKfycbwh83jggU_mOvEyzQF6kx4PexRYH0NC-JOZYvmtCwdAg-w2vx8Fsc5W9wQmK-G7pwTs/exec', {
-          method: 'POST',
-          mode: 'no-cors',
-          body: new FormData(form)
-        })
+  method: 'POST',
+  mode: 'no-cors',
+  body: new FormData(form)
+})
+
         .then(() => {
           form.reset();
           document.getElementById('formBox').style.display = 'none';
